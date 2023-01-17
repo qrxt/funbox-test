@@ -1,16 +1,21 @@
-import { css } from "@emotion/react";
+import { css, ThemeContext } from "@emotion/react";
 import theme from "lib/theme";
 import catImage from "../../assets/images/cat.png";
+import sadCatImage from "../../assets/images/cat_sad.png";
+import { match, P } from "ts-pattern";
 
 export const cardStyle = (isSelected: boolean, isDisabled: boolean) => {
-  const borderColor =
-    isSelected && !isDisabled
-      ? theme.border.selected.color
-      : theme.border.default.color;
-  const hoverBorderColor =
-    isSelected && !isDisabled
-      ? theme.border.selectedHover.color
-      : theme.border.hover.color;
+  const borderColor = match([isSelected, isDisabled] as const)
+    .with([true, false], () => theme.border.selected.color)
+    .with([false, false], () => theme.border.default.color)
+    .with([P.any, true], () => theme.border.disabled.color)
+    .exhaustive();
+
+  const hoverBorderColor = match([isSelected, isDisabled] as const)
+    .with([true, false], () => theme.border.selectedHover.color)
+    .with([false, false], () => theme.border.hover.color)
+    .with([P.any, true], () => theme.border.disabled.color)
+    .exhaustive();
 
   const hovers =
     !isDisabled &&
@@ -24,6 +29,9 @@ export const cardStyle = (isSelected: boolean, isDisabled: boolean) => {
       }
     `;
 
+  const cursor = isDisabled ? "not-allowed" : "pointer";
+  const fittingCat = isDisabled ? sadCatImage : catImage;
+
   return css`
     height: 480px;
     width: 320px;
@@ -32,11 +40,11 @@ export const cardStyle = (isSelected: boolean, isDisabled: boolean) => {
     padding: 18px 45px 0;
     margin-bottom: 13px;
 
-    background: #f2f2f2 url(${catImage}) center bottom/contain no-repeat;
+    background: #f2f2f2 url(${fittingCat}) center bottom/contain no-repeat;
     border: 4px solid ${borderColor};
     transition: ${theme.transition("border")};
 
-    cursor: pointer;
+    cursor: ${cursor};
 
     ${hovers}
 
@@ -67,14 +75,15 @@ export const cardDescriptionStyles = (
   isHovered: boolean,
   isDisabled: boolean
 ) => {
-  const color =
-    !isDisabled && isSelected && isHovered
-      ? theme.activeText.color
-      : theme.primaryText.color;
+  const textColor = match([isSelected, isHovered, isDisabled] as const)
+    .with([true, true, false], () => theme.activeText.color)
+    .with([false, true, false], () => theme.primaryText.color)
+    .with([P.any, P.any, true], () => theme.disabledText.color)
+    .otherwise(() => theme.primaryText.color);
 
   return css`
     font-family: ${theme.primaryText.font};
-    color: ${color};
+    color: ${textColor};
     font-size: 16px;
     line-height: 19px;
 
@@ -82,30 +91,48 @@ export const cardDescriptionStyles = (
   `;
 };
 
-export const cardTitleStyles = css`
-  font-family: ${theme.primaryText.font};
-  color: ${theme.primaryText.color};
-  font-size: 48px;
-  line-height: 56px;
-  font-weight: 700;
-`;
+export const cardTitleStyles = (isDisabled: boolean) => {
+  const textColor = isDisabled
+    ? theme.disabledText.color
+    : theme.primaryText.color;
 
-export const cardFlavorStyles = css`
-  font-family: ${theme.primaryText.font};
-  color: ${theme.primaryText.color};
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 700;
-  text-transform: lowercase;
-`;
+  return css`
+    font-family: ${theme.primaryText.font};
+    color: ${textColor};
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+  `;
+};
 
-export const cardFeatureItem = css`
-  font-family: ${theme.primaryText.font};
-  color: ${theme.secondaryText.color};
-  font-size: 14px;
-  line-height: 16px;
-  text-transform: lowercase;
-`;
+export const cardFlavorStyles = (isDisabled: boolean) => {
+  const textColor = isDisabled
+    ? theme.disabledText.color
+    : theme.primaryText.color;
+
+  return css`
+    font-family: ${theme.primaryText.font};
+    color: ${textColor};
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    text-transform: lowercase;
+  `;
+};
+
+export const cardFeatureItem = (isDisabled: boolean) => {
+  const textColor = isDisabled
+    ? theme.disabledText.color
+    : theme.primaryText.color;
+
+  return css`
+    font-family: ${theme.primaryText.font};
+    color: ${textColor};
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: lowercase;
+  `;
+};
 
 export const cardWeightStyles = css`
   position: absolute;
@@ -120,6 +147,7 @@ export const cardFooterStyles = css`
   line-height: 16px;
   text-align: center;
 `;
+
 export const cardCallToActionLinkStyles = css`
   font-family: ${theme.primaryText.font};
   color: ${theme.link.default.color};
@@ -135,4 +163,12 @@ export const cardCallToActionLinkStyles = css`
   &:focus {
     color: ${theme.link.focus.color};
   }
+`;
+
+export const cardOutOfStockStyles = css`
+  font-size: 13px;
+  line-height: 16px;
+  font-family: ${theme.primaryText.font};
+  text-align: center;
+  color: ${theme.warningText.color};
 `;

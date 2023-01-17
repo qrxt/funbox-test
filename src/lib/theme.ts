@@ -4,6 +4,11 @@ const secondaryTextFont = `"Exo 2", "Lucida Sans", Arial, sans-serif`;
 
 // TODO: theme -> components, etc
 
+const colors = {
+  disabled: "#B3B3B3",
+  warning: "#FFFF66",
+};
+
 const theme = {
   primaryText: {
     color: "#000000",
@@ -21,7 +26,10 @@ const theme = {
     color: "#D91667",
   },
   disabledText: {
-    color: "#B3B3B3",
+    color: colors.disabled,
+  },
+  warningText: {
+    color: colors.warning,
   },
 
   border: {
@@ -37,6 +45,9 @@ const theme = {
     selectedHover: {
       color: "#E52E7A",
     },
+    disabled: {
+      color: colors.disabled,
+    },
   },
 
   decoration: {
@@ -45,6 +56,9 @@ const theme = {
     },
     selected: {
       color: "#D91667",
+    },
+    disabled: {
+      color: colors.disabled,
     },
   },
   link: {

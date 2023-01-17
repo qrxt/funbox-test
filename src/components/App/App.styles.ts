@@ -42,25 +42,3 @@ export const globalStyles = css`
     background-image: url(${patternImage});
   }
 `;
-
-// TODO: убрать
-// @font-face {
-//   font-family: "Exo 2";
-//   font-style: normal;
-//   font-weight: 400;
-//   src: url("src/assets/fonts/exo-2-v20-latin_cyrillic-regular.eot"); /* IE9 Compat Modes */
-//   src: local(""),
-//     url("src/assets/fonts/exo-2-v20-latin_cyrillic-regular.eot?#iefix")
-//       format("embedded-opentype"),
-//     /* IE6-IE8 */
-//       url("src/assets/fonts/exo-2-v20-latin_cyrillic-regular.woff2")
-//       format("woff2"),
-//     /* Super Modern Browsers */
-//       url("src/assets/fonts/exo-2-v20-latin_cyrillic-regular.woff")
-//       format("woff"),
-//     /* Modern Browsers */ url("../fonts/exo-2-v20-latin_cyrillic-regular.ttf")
-//       format("truetype"),
-//     /* Safari, Android, iOS */
-//       url("src/assets/fonts/exo-2-v20-latin_cyrillic-regular.svg#Exo2")
-//       format("svg"); /* Legacy iOS */
-// }

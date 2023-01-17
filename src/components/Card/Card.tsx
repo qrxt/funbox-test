@@ -9,9 +9,11 @@ import {
   cardWeightStyles,
   cardCallToActionLinkStyles,
   cardFooterStyles,
+  cardOutOfStockStyles,
 } from "./Card.style";
 import { Card as CardType } from "types/card";
 import WeightLabel from "components/WeightLabel";
+import { match, P } from "ts-pattern";
 
 interface CardProps {
   card: CardType;
@@ -32,47 +34,19 @@ function Ingredients({ composition }: { composition: string }) {
   return <p css={cardFooterStyles}>{composition}</p>;
 }
 
-enum CardState {
-  Initial = "Initial",
-  Hovered = "Hovered",
-  Selected = "Selected",
-  SelectedHovered = "SelectedHovered",
-  Disabled = "Disabled",
+function OutOfStock({ flavor }: { flavor: string }) {
+  return (
+    <p
+      css={cardOutOfStockStyles}
+    >{`Печалька, ${flavor.toLowerCase()} закончился.`}</p>
+  );
 }
-
-enum CardEvent {
-  SetHovered = "SetHovered",
-  SetSelected = "SetSelected",
-  SetHoveredSelected = "SetHoveredSelected",
-  SetDisabled = "SetDisabled",
-}
-
-// const reducer: Reducer<CardState, CardEvent> = (state, event) => {
-//   const transitions = {
-//     [CardState.Initial]: () => {},
-//     [CardState.Hovered]: () => {
-//       if (state === "Disabled") {
-//         return state;
-//       }
-
-//       return state === "Selected" ? "SelectedHovered" : "Hovered";
-//     },
-//     [CardState.Selected]: () => {
-
-//     },
-//   };
-
-//   return transitions[state] ? transitions[state]() : state;
-// };
 
 function Card(props: CardProps) {
   const { card } = props;
   const [isSelected, setSelected] = useState(false);
   const [isHovered, setHover] = useState(false);
   const isDisabled = card.goodsInStock === 0;
-  // const [state, dispatch] = useReducer(reducer, CardState.Initial);
-
-  // console.log(state, card.flavor);
 
   function handleSelect() {
     if (!isDisabled) {
@@ -95,13 +69,13 @@ function Card(props: CardProps) {
               : card.description}
           </p>
 
-          <h3 css={cardTitleStyles}>{card.name}</h3>
-          <p css={cardFlavorStyles}>{card.flavor}</p>
+          <h3 css={cardTitleStyles(isDisabled)}>{card.name}</h3>
+          <p css={cardFlavorStyles(isDisabled)}>{card.flavor}</p>
         </header>
 
         <ul>
           {card.features.map((feature) => (
-            <li key={feature} css={cardFeatureItem}>
+            <li key={feature} css={cardFeatureItem(isDisabled)}>
               {feature}
             </li>
           ))}
@@ -116,11 +90,15 @@ function Card(props: CardProps) {
         </div>
       </div>
 
-      {isSelected ? (
-        <Ingredients composition={card.ingredients} />
-      ) : (
-        <CallToAction handleSelect={handleSelect} />
-      )}
+      {match([isSelected, isDisabled] as const)
+        .with([true, false], () => (
+          <Ingredients composition={card.ingredients} />
+        ))
+        .with([false, false], () => (
+          <CallToAction handleSelect={handleSelect} />
+        ))
+        .with([P.any, true], () => <OutOfStock flavor={card.flavor} />)
+        .exhaustive()}
     </article>
   );
 }
