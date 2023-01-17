@@ -27,6 +27,9 @@ const theme = {
   decoration: {
     color: "#1698D9",
   },
+  link: {
+    color: "#1698D9",
+  },
 };
 
 export default theme;

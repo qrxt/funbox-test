@@ -8,6 +8,8 @@ import {
   cardHeaderStyles,
   cardFeatureItem,
   cardWeightStyles,
+  cardCallToActionStyles,
+  cardCallToActionLinkStyles,
 } from "./Card.style";
 import { Card as CardType } from "types/card";
 import WeightLabel from "components/WeightLabel";
@@ -20,23 +22,34 @@ function Card(props: CardProps) {
   const { card } = props;
 
   return (
-    <article css={cardStyle}>
-      <header css={cardHeaderStyles}>
-        <p css={cardDescriptionStyles}>{card.description}</p>
+    <article>
+      <div css={cardStyle}>
+        <header css={cardHeaderStyles}>
+          <p css={cardDescriptionStyles}>{card.description}</p>
 
-        <h3 css={cardTitleStyles}>{card.name}</h3>
-        <p css={cardFlavorStyles}>{card.flavor}</p>
-      </header>
+          <h3 css={cardTitleStyles}>{card.name}</h3>
+          <p css={cardFlavorStyles}>{card.flavor}</p>
+        </header>
 
-      <ul>
-        {card.features.map((feature) => (
-          <li css={cardFeatureItem}>{feature}</li>
-        ))}
-      </ul>
+        <ul>
+          {card.features.map((feature) => (
+            <li key={feature} css={cardFeatureItem}>
+              {feature}
+            </li>
+          ))}
+        </ul>
 
-      <div css={cardWeightStyles}>
-        <WeightLabel value={card.weight} />
+        <div css={cardWeightStyles}>
+          <WeightLabel value={card.weight} />
+        </div>
       </div>
+
+      <p css={cardCallToActionStyles}>
+        Чего сидишь? Порадуй котэ,{" "}
+        <a css={cardCallToActionLinkStyles} href="#">
+          купи.
+        </a>
+      </p>
     </article>
   );
 }

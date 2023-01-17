@@ -6,6 +6,9 @@ interface LayoutProps {
 }
 
 const wrapperStyles = css`
+  display: flex;
+  /* align-items: center; */
+
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;

@@ -5,9 +5,10 @@ import catImage from "../../assets/images/cat.png";
 export const cardStyle = css`
   height: 480px;
   width: 320px;
-  padding: 18px 45px 0;
   border-radius: 10px;
   position: relative;
+  padding: 18px 45px 0;
+  margin-bottom: 13px;
 
   // TODO: check ie11
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
@@ -72,4 +73,19 @@ export const cardWeightStyles = css`
   position: absolute;
   right: 10px;
   bottom: 10px;
+`;
+
+export const cardCallToActionStyles = css`
+  font-family: ${theme.primaryText.font};
+  color: ${theme.contrastText.color};
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+`;
+export const cardCallToActionLinkStyles = css`
+  font-family: ${theme.primaryText.font};
+  color: ${theme.link.color};
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration-style: dashed;
 `;
