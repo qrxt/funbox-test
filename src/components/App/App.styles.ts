@@ -7,6 +7,10 @@ import patternImage from "../../assets/images/patternmin.png";
 export const globalStyles = css`
   ${emotionReset}
 
+  *,*::before,*::after {
+    box-sizing: border-box;
+  }
+
   @font-face {
     font-family: "Exo 2";
     font-style: normal;
