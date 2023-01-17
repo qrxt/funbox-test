@@ -42,8 +42,20 @@ const theme = {
     },
   },
   link: {
-    color: "#1698D9",
+    default: {
+      color: "#1698D9",
+    },
+
+    hover: {
+      color: "#2EA8E6",
+    },
+
+    focus: {
+      color: "#2EA8E6",
+    },
   },
+
+  transition: (prop: string) => `${prop} 0.25s ease-in-out`,
 };
 
 export default theme;

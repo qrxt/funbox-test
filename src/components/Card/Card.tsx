@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { css } from "@emotion/react";
 import {
   cardStyle,
   cardDescriptionStyles,

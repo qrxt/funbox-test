@@ -20,7 +20,7 @@ export const cardStyle = (isSelected: boolean) => {
 
     background: #f2f2f2 url(${catImage}) center bottom/contain no-repeat;
     border: 4px solid ${borderColor};
-    transition: border 0.4s ease-in-out;
+    transition: ${theme.transition("border")};
 
     cursor: pointer;
 
@@ -45,7 +45,7 @@ export const cardStyle = (isSelected: boolean) => {
       border-width: 45px 45px 0 0;
       transform: rotate(180deg);
       border-color: transparent ${borderColor} transparent transparent;
-      transition: border-color 0.4s ease-in-out;
+      transition: ${theme.transition("border-color")};
     }
   `;
 };
@@ -103,8 +103,17 @@ export const cardFooterStyles = css`
 `;
 export const cardCallToActionLinkStyles = css`
   font-family: ${theme.primaryText.font};
-  color: ${theme.link.color};
+  color: ${theme.link.default.color};
   font-size: 13px;
   line-height: 16px;
   text-decoration-style: dashed;
+
+  transition: ${theme.transition("color")};
+
+  &:hover {
+    color: ${theme.link.hover.color};
+  }
+  &:focus {
+    color: ${theme.link.focus.color};
+  }
 `;

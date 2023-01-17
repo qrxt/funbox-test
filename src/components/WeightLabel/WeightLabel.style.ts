@@ -11,7 +11,7 @@ export const weightLabelStyles = (isSelected: boolean) => {
     width: 80px;
     height: 80px;
     background-color: ${backgroundColor};
-    transition: background-color 0.4s ease-in-out;
+    transition: ${theme.transition("background-color")};
 
     padding-top: 20px;
 
