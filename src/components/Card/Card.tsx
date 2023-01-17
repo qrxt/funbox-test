@@ -23,7 +23,7 @@ interface CardProps {
 function CallToAction({ handleSelect }: { handleSelect: () => void }) {
   return (
     <p css={cardFooterStyles}>
-      Чего сидишь? Порадуй котэ,{" "}
+      <span>Чего сидишь? Порадуй котэ, </span>
       <a css={cardCallToActionLinkStyles} href="#" onClick={handleSelect}>
         купи.
       </a>
@@ -55,6 +55,12 @@ function Card(props: CardProps) {
     }
   }
 
+  function handleEnterPress(event: React.KeyboardEvent) {
+    if (event.key === "Enter") {
+      setSelected((prev) => !prev);
+    }
+  }
+
   return (
     <article aria-disabled={isDisabled}>
       <div
@@ -62,6 +68,8 @@ function Card(props: CardProps) {
         onClick={handleSelect}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        tabIndex={isDisabled ? -1 : 0}
+        onKeyDown={handleEnterPress}
       >
         <header css={cardHeaderStyles}>
           <p css={cardDescriptionStyles(isSelected, isHovered, isDisabled)}>

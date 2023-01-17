@@ -63,6 +63,11 @@ export const cardStyle = (isSelected: boolean, isDisabled: boolean) => {
       border-color: transparent ${borderColor} transparent transparent;
       transition: ${theme.transition("border-color")};
     }
+
+    &:focus-visible {
+      outline: none;
+      opacity: 0.9;
+    }
   `;
 };
 
