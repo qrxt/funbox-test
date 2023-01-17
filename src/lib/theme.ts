@@ -14,11 +14,14 @@ const theme = {
     font: secondaryTextFont,
   },
   contrastText: {
-    color: "#ffffff",
+    color: "#FFFFFF",
     font: secondaryTextFont,
   },
   activeText: {
     color: "#D91667",
+  },
+  disabledText: {
+    color: "#B3B3B3",
   },
 
   border: {

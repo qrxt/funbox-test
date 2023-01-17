@@ -6,4 +6,5 @@ export interface Card {
   ingredients: string;
   flavor: string;
   description: string;
+  goodsInStock: number;
 }

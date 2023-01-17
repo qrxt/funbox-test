@@ -1,10 +1,11 @@
 import { css } from "@emotion/react";
 import theme from "lib/theme";
 
-export const weightLabelStyles = (isSelected: boolean) => {
-  const backgroundColor = isSelected
-    ? theme.decoration.selected.color
-    : theme.decoration.default.color;
+export const weightLabelStyles = (isSelected: boolean, isDisabled: boolean) => {
+  const backgroundColor =
+    isSelected && !isDisabled
+      ? theme.decoration.selected.color
+      : theme.decoration.default.color;
 
   return css`
     border-radius: 50%;

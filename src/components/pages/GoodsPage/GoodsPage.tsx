@@ -14,6 +14,7 @@ const cardsList: Card[] = [
     description: "Сказочное заморское яство",
     features: ["10 порций", "мышь в подарок"],
     ingredients: "Печень утки разварная с артишоками.",
+    goodsInStock: 0,
   },
   {
     id: 1,
@@ -23,6 +24,7 @@ const cardsList: Card[] = [
     description: "Сказочное заморское яство",
     features: ["40 порций", "2 мыши в подарок"],
     ingredients: "Головы щучьи с чесноком да свежайшая сёмгушка.",
+    goodsInStock: 1,
   },
   {
     id: 2,
@@ -32,6 +34,7 @@ const cardsList: Card[] = [
     description: "Сказочное заморское яство",
     features: ["100 порций", "5 мышей в подарок", "заказчик доволен"],
     ingredients: "Филе из цыплят с трюфелями в бульоне.",
+    goodsInStock: 1,
   },
 ];
 

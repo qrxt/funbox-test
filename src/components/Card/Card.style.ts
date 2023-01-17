@@ -2,13 +2,27 @@ import { css } from "@emotion/react";
 import theme from "lib/theme";
 import catImage from "../../assets/images/cat.png";
 
-export const cardStyle = (isSelected: boolean) => {
-  const borderColor = isSelected
-    ? theme.border.selected.color
-    : theme.border.default.color;
-  const hoverBorderColor = isSelected
-    ? theme.border.selectedHover.color
-    : theme.border.hover.color;
+export const cardStyle = (isSelected: boolean, isDisabled: boolean) => {
+  const borderColor =
+    isSelected && !isDisabled
+      ? theme.border.selected.color
+      : theme.border.default.color;
+  const hoverBorderColor =
+    isSelected && !isDisabled
+      ? theme.border.selectedHover.color
+      : theme.border.hover.color;
+
+  const hovers =
+    !isDisabled &&
+    css`
+      &:hover {
+        border: 4px solid ${hoverBorderColor};
+      }
+
+      &:hover::before {
+        border-color: transparent ${hoverBorderColor} transparent transparent;
+      }
+    `;
 
   return css`
     height: 480px;
@@ -24,13 +38,7 @@ export const cardStyle = (isSelected: boolean) => {
 
     cursor: pointer;
 
-    &:hover {
-      border: 4px solid ${hoverBorderColor};
-    }
-
-    &:hover::before {
-      border-color: transparent ${hoverBorderColor} transparent transparent;
-    }
+    ${hovers}
 
     // TODO: check ie11
     clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
@@ -56,10 +64,13 @@ export const cardHeaderStyles = css`
 
 export const cardDescriptionStyles = (
   isSelected: boolean,
-  isHovered: boolean
+  isHovered: boolean,
+  isDisabled: boolean
 ) => {
   const color =
-    isSelected && isHovered ? theme.activeText.color : theme.primaryText.color;
+    !isDisabled && isSelected && isHovered
+      ? theme.activeText.color
+      : theme.primaryText.color;
 
   return css`
     font-family: ${theme.primaryText.font};

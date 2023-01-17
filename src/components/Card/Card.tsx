@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Reducer, useReducer, useState } from "react";
 import {
   cardStyle,
   cardDescriptionStyles,
@@ -32,26 +32,67 @@ function Ingredients({ composition }: { composition: string }) {
   return <p css={cardFooterStyles}>{composition}</p>;
 }
 
+enum CardState {
+  Initial = "Initial",
+  Hovered = "Hovered",
+  Selected = "Selected",
+  SelectedHovered = "SelectedHovered",
+  Disabled = "Disabled",
+}
+
+enum CardEvent {
+  SetHovered = "SetHovered",
+  SetSelected = "SetSelected",
+  SetHoveredSelected = "SetHoveredSelected",
+  SetDisabled = "SetDisabled",
+}
+
+// const reducer: Reducer<CardState, CardEvent> = (state, event) => {
+//   const transitions = {
+//     [CardState.Initial]: () => {},
+//     [CardState.Hovered]: () => {
+//       if (state === "Disabled") {
+//         return state;
+//       }
+
+//       return state === "Selected" ? "SelectedHovered" : "Hovered";
+//     },
+//     [CardState.Selected]: () => {
+
+//     },
+//   };
+
+//   return transitions[state] ? transitions[state]() : state;
+// };
+
 function Card(props: CardProps) {
   const { card } = props;
   const [isSelected, setSelected] = useState(false);
   const [isHovered, setHover] = useState(false);
+  const isDisabled = card.goodsInStock === 0;
+  // const [state, dispatch] = useReducer(reducer, CardState.Initial);
+
+  // console.log(state, card.flavor);
 
   function handleSelect() {
-    setSelected((prev) => !prev);
+    if (!isDisabled) {
+      setSelected((prev) => !prev);
+    }
   }
 
   return (
     <article>
       <div
-        css={cardStyle(isSelected)}
+        css={cardStyle(isSelected, isDisabled)}
         onClick={handleSelect}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         <header css={cardHeaderStyles}>
-          <p css={cardDescriptionStyles(isSelected, isHovered)}>
-            {isSelected && isHovered ? "Котэ не одобряет?" : card.description}
+          <p css={cardDescriptionStyles(isSelected, isHovered, isDisabled)}>
+            {isSelected && isHovered && !isDisabled
+              ? "Котэ не одобряет?"
+              : card.description}
           </p>
 
           <h3 css={cardTitleStyles}>{card.name}</h3>
@@ -67,7 +108,11 @@ function Card(props: CardProps) {
         </ul>
 
         <div css={cardWeightStyles}>
-          <WeightLabel isSelected={isSelected} value={card.weight} />
+          <WeightLabel
+            isSelected={isSelected}
+            isDisabled={isDisabled}
+            value={card.weight}
+          />
         </div>
       </div>
 
