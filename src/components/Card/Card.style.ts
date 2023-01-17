@@ -54,14 +54,22 @@ export const cardHeaderStyles = css`
   margin-bottom: 15px;
 `;
 
-export const cardDescriptionStyles = css`
-  font-family: ${theme.primaryText.font};
-  color: ${theme.primaryText.color};
-  font-size: 16px;
-  line-height: 19px;
+export const cardDescriptionStyles = (
+  isSelected: boolean,
+  isHovered: boolean
+) => {
+  const color =
+    isSelected && isHovered ? theme.activeText.color : theme.primaryText.color;
 
-  margin-bottom: 5px;
-`;
+  return css`
+    font-family: ${theme.primaryText.font};
+    color: ${color};
+    font-size: 16px;
+    line-height: 19px;
+
+    margin-bottom: 5px;
+  `;
+};
 
 export const cardTitleStyles = css`
   font-family: ${theme.primaryText.font};

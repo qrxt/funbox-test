@@ -17,6 +17,9 @@ const theme = {
     color: "#ffffff",
     font: secondaryTextFont,
   },
+  activeText: {
+    color: "#D91667",
+  },
 
   border: {
     default: {

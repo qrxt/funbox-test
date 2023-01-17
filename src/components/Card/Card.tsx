@@ -35,6 +35,7 @@ function Ingredients({ composition }: { composition: string }) {
 function Card(props: CardProps) {
   const { card } = props;
   const [isSelected, setSelected] = useState(false);
+  const [isHovered, setHover] = useState(false);
 
   function handleSelect() {
     setSelected((prev) => !prev);
@@ -42,9 +43,16 @@ function Card(props: CardProps) {
 
   return (
     <article>
-      <div css={cardStyle(isSelected)} onClick={handleSelect}>
+      <div
+        css={cardStyle(isSelected)}
+        onClick={handleSelect}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
         <header css={cardHeaderStyles}>
-          <p css={cardDescriptionStyles}>{card.description}</p>
+          <p css={cardDescriptionStyles(isSelected, isHovered)}>
+            {isSelected && isHovered ? "Котэ не одобряет?" : card.description}
+          </p>
 
           <h3 css={cardTitleStyles}>{card.name}</h3>
           <p css={cardFlavorStyles}>{card.flavor}</p>
