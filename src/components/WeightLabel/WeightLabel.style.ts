@@ -1,17 +1,24 @@
 import { css } from "@emotion/react";
 import theme from "lib/theme";
 
-export const weightLabelStyles = css`
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  background-color: ${theme.decoration.color};
+export const weightLabelStyles = (isSelected: boolean) => {
+  const backgroundColor = isSelected
+    ? theme.decoration.selected.color
+    : theme.decoration.default.color;
 
-  padding-top: 20px;
+  return css`
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background-color: ${backgroundColor};
+    transition: background-color 0.4s ease-in-out;
 
-  text-align: center;
-  text-transform: lowercase;
-`;
+    padding-top: 20px;
+
+    text-align: center;
+    text-transform: lowercase;
+  `;
+};
 
 export const weightValueStyles = css`
   font-family: ${theme.primaryText.font};

@@ -2,44 +2,53 @@ import { css } from "@emotion/react";
 import theme from "lib/theme";
 import catImage from "../../assets/images/cat.png";
 
-export const cardStyle = css`
-  height: 480px;
-  width: 320px;
-  border-radius: 10px;
-  position: relative;
-  padding: 18px 45px 0;
-  margin-bottom: 13px;
+export const cardStyle = (isSelected: boolean) => {
+  const borderColor = isSelected
+    ? theme.border.selected.color
+    : theme.border.default.color;
+  const hoverBorderColor = isSelected
+    ? theme.border.selectedHover.color
+    : theme.border.hover.color;
 
-  // TODO: check ie11
-  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
-  &::before {
-    content: "";
-    width: 0;
-    height: 0;
-    left: 0;
-    top: 0px;
-    position: absolute;
-    border-style: solid;
-    border-width: 45px 45px 0 0;
-    transform: rotate(180deg);
-    border-color: transparent ${theme.border.default.color} transparent
-      transparent;
-  }
+  return css`
+    height: 480px;
+    width: 320px;
+    border-radius: 10px;
+    position: relative;
+    padding: 18px 45px 0;
+    margin-bottom: 13px;
 
-  &:hover::before {
-    border-color: transparent ${theme.border.hover.color} transparent
-      transparent;
-  }
+    background: #f2f2f2 url(${catImage}) center bottom/contain no-repeat;
+    border: 4px solid ${borderColor};
+    transition: border 0.4s ease-in-out;
 
-  background: #f2f2f2 url(${catImage}) center bottom/contain no-repeat;
+    cursor: pointer;
 
-  border: 4px solid ${theme.border.default.color};
-  transition: border 0.4s ease-in-out;
+    &:hover {
+      border: 4px solid ${hoverBorderColor};
+    }
 
-  &:hover {
-    border: 4px solid ${theme.border.hover.color};
-  }
-`;
+    &:hover::before {
+      border-color: transparent ${hoverBorderColor} transparent transparent;
+    }
+
+    // TODO: check ie11
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
+    &::before {
+      content: "";
+      width: 0;
+      height: 0;
+      left: 0;
+      top: 0px;
+      position: absolute;
+      border-style: solid;
+      border-width: 45px 45px 0 0;
+      transform: rotate(180deg);
+      border-color: transparent ${borderColor} transparent transparent;
+      transition: border-color 0.4s ease-in-out;
+    }
+  `;
+};
 
 export const cardHeaderStyles = css`
   margin-bottom: 15px;
@@ -85,7 +94,7 @@ export const cardWeightStyles = css`
   bottom: 10px;
 `;
 
-export const cardCallToActionStyles = css`
+export const cardFooterStyles = css`
   font-family: ${theme.primaryText.font};
   color: ${theme.contrastText.color};
   font-size: 13px;

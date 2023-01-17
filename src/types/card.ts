@@ -3,6 +3,7 @@ export interface Card {
   name: string;
   weight: number;
   features: string[];
+  ingredients: string;
   flavor: string;
   description: string;
 }

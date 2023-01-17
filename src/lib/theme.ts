@@ -28,10 +28,18 @@ const theme = {
     selected: {
       color: "#D91667",
     },
+    selectedHover: {
+      color: "#E52E7A",
+    },
   },
 
   decoration: {
-    color: "#1698D9",
+    default: {
+      color: "#1698D9",
+    },
+    selected: {
+      color: "#D91667",
+    },
   },
   link: {
     color: "#1698D9",
