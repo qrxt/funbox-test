@@ -45,4 +45,4 @@ npm run dev
 
 [Здесь, тык](https://funbox-test-sand.vercel.app/)
 
-![image](https://user-images.githubusercontent.com/46269438/213015249-969d095c-9cd3-4726-a72d-fa4b109ed133.png)
+![image](https://user-images.githubusercontent.com/46269438/213022835-a5768afd-b0d7-4947-9e7b-8958a977c2d1.png)
