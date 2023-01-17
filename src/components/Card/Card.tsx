@@ -55,7 +55,7 @@ function Card(props: CardProps) {
   }
 
   return (
-    <article>
+    <article aria-disabled={isDisabled}>
       <div
         css={cardStyle(isSelected, isDisabled)}
         onClick={handleSelect}
