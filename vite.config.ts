@@ -6,13 +6,13 @@ import legacy from "@vitejs/plugin-legacy";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
-    tsconfigPaths(),
     legacy({
       // for ie11
       targets: ["ie >= 11"],
       additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
       polyfills: ["es.array.iterator"],
     }),
+    react(),
+    tsconfigPaths(),
   ],
 });
