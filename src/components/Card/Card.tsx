@@ -17,6 +17,7 @@ import { match, P } from "ts-pattern";
 
 interface CardProps {
   card: CardType;
+  isInitiallySelected: boolean;
 }
 
 function CallToAction({ handleSelect }: { handleSelect: () => void }) {
@@ -43,8 +44,8 @@ function OutOfStock({ flavor }: { flavor: string }) {
 }
 
 function Card(props: CardProps) {
-  const { card } = props;
-  const [isSelected, setSelected] = useState(false);
+  const { card, isInitiallySelected } = props;
+  const [isSelected, setSelected] = useState(isInitiallySelected);
   const [isHovered, setHover] = useState(false);
   const isDisabled = card.goodsInStock === 0;
 

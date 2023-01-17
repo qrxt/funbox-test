@@ -13,7 +13,7 @@ function CardsList(props: CardsListProps) {
     <ul css={cardsListStyles}>
       {cards.map((card) => (
         <li key={card.id} css={cardsListItemStyles}>
-          <Card card={card} />
+          <Card card={card} isInitiallySelected={card.id === 1} />
         </li>
       ))}
     </ul>
