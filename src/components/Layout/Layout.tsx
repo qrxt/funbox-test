@@ -7,18 +7,13 @@ interface LayoutProps {
 
 const wrapperStyles = css`
   display: flex;
-  /* align-items: center; */
+  align-items: center;
 
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
-  height: 100%;
+  min-height: 100vh;
   padding: 40px 0;
-
-  // TODO: medias
-  /* @media (min-width: 768px) {
-    padding: 0 50px;
-  } */
 `;
 
 function Layout(props: LayoutProps) {
