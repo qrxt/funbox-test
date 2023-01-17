@@ -82,9 +82,9 @@ export const cardDescriptionStyles = (
 ) => {
   const textColor = match([isSelected, isHovered, isDisabled] as const)
     .with([true, true, false], () => theme.activeText.color)
-    .with([false, true, false], () => theme.primaryText.color)
+    .with([false, false, false], () => theme.secondaryText.color)
     .with([P.any, P.any, true], () => theme.disabledText.color)
-    .otherwise(() => theme.primaryText.color);
+    .otherwise(() => theme.secondaryText.color);
 
   return css`
     font-family: ${theme.primaryText.font};
@@ -128,7 +128,7 @@ export const cardFlavorStyles = (isDisabled: boolean) => {
 export const cardFeatureItem = (isDisabled: boolean) => {
   const textColor = isDisabled
     ? theme.disabledText.color
-    : theme.primaryText.color;
+    : theme.secondaryText.color;
 
   return css`
     font-family: ${theme.primaryText.font};
