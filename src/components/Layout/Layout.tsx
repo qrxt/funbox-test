@@ -16,10 +16,23 @@ const wrapperStyles = css`
   padding: 40px 0;
 `;
 
+const pageStyles = css`
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 5e-5) 49.88%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+`;
+
 function Layout(props: LayoutProps) {
   const { children } = props;
 
-  return <div css={wrapperStyles}>{children}</div>;
+  return (
+    <div css={pageStyles}>
+      <div css={wrapperStyles}>{children}</div>
+    </div>
+  );
 }
 
 export default Layout;
