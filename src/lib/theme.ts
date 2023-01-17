@@ -22,6 +22,12 @@ const theme = {
     default: {
       color: "#1698D9",
     },
+    hover: {
+      color: "#2EA8E6",
+    },
+    selected: {
+      color: "#D91667",
+    },
   },
 
   decoration: {

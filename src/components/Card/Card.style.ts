@@ -26,9 +26,19 @@ export const cardStyle = css`
       transparent;
   }
 
+  &:hover::before {
+    border-color: transparent ${theme.border.hover.color} transparent
+      transparent;
+  }
+
   background: #f2f2f2 url(${catImage}) center bottom/contain no-repeat;
 
   border: 4px solid ${theme.border.default.color};
+  transition: border 0.4s ease-in-out;
+
+  &:hover {
+    border: 4px solid ${theme.border.hover.color};
+  }
 `;
 
 export const cardHeaderStyles = css`
