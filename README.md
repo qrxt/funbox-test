@@ -44,3 +44,5 @@ npm run dev
 
 [Здесь, тык](https://silver-jalebi-52b419.netlify.app/)
 
+![image](https://user-images.githubusercontent.com/46269438/213280739-6ce5e9b5-053a-4fc7-be95-b0c744c32a7a.png)
+
