@@ -42,5 +42,5 @@ npm run dev
 
 ## Демо
 
-[Здесь, тык](https://funbox-test-sand.vercel.app/)
+[Здесь, тык](https://silver-jalebi-52b419.netlify.app/)
 
