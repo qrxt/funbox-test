@@ -38,7 +38,6 @@ make dev
 npm run dev
 ```
 
-Откроется на 5173 порту
 [http://localhost:5173](http://localhost:5173)
 
 ## Демо
