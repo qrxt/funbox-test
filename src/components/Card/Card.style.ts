@@ -1,4 +1,4 @@
-import { css, ThemeContext } from "@emotion/react";
+import { css } from "@emotion/react";
 import theme from "lib/theme";
 import catImage from "../../assets/images/cat.png";
 import sadCatImage from "../../assets/images/cat_sad.png";

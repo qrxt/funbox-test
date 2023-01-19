@@ -1,5 +1,6 @@
-const primaryTextFont = `"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-"Lucida Sans", Arial, sans-serif`;
+// eslint-disable-next-line quotes
+const primaryTextFont = `"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif`;
+// eslint-disable-next-line quotes
 const secondaryTextFont = `"Exo 2", "Lucida Sans", Arial, sans-serif`;
 
 // TODO: theme -> components, etc

@@ -1,4 +1,4 @@
-import React, { Reducer, useReducer, useState } from "react";
+import React, { useState } from "react";
 import {
   cardStyle,
   cardDescriptionStyles,
