@@ -6,8 +6,14 @@ interface LayoutProps {
 }
 
 const wrapperStyles = css`
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
   align-items: center;
+
+  /*Center horizontaly ie */
+  -ms-flex-pack: center;
+  -ms-flex-align: center;
 
   margin-left: auto;
   margin-right: auto;
