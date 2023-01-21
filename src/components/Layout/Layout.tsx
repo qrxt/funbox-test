@@ -19,6 +19,7 @@ const wrapperStyles = css`
   margin-right: auto;
   max-width: 1200px;
   min-height: 100vh;
+  height: 100vh;
   padding: 40px 0;
 `;
 
