@@ -31,6 +31,7 @@ export const globalStyles = css`
   #root {
     min-height: 100%;
     font-family: ${theme.primaryText.font};
+    width: 100%;
   }
 
   body {
