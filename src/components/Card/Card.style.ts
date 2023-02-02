@@ -154,11 +154,27 @@ export const cardFooterStyles = css`
 `;
 
 export const cardCallToActionLinkStyles = css`
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 85%;
+    height: 1px;
+    border-bottom: 1px dashed ${theme.link.default.color};
+    position: absolute;
+    bottom: 2px;
+  }
+
+  background: transparent;
+  border: none;
+  padding: 0;
+
   font-family: ${theme.primaryText.font};
   color: ${theme.link.default.color};
   font-size: 13px;
   line-height: 16px;
-  text-decoration-style: dashed;
 
   transition: ${theme.transition("color")};
 

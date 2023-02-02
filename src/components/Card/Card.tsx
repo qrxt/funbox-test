@@ -24,9 +24,9 @@ function CallToAction({ handleSelect }: { handleSelect: () => void }) {
   return (
     <p css={cardFooterStyles}>
       <span>Чего сидишь? Порадуй котэ, </span>
-      <a css={cardCallToActionLinkStyles} href="#" onClick={handleSelect}>
+      <button css={cardCallToActionLinkStyles} onClick={handleSelect}>
         купи.
-      </a>
+      </button>
     </p>
   );
 }
