@@ -32,6 +32,10 @@ export const globalStyles = css`
     min-height: 100%;
     font-family: ${theme.primaryText.font};
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   body {
